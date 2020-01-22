@@ -11,5 +11,6 @@
 	height: auto; /* Set the fixed height of the footer here */
 	line-height: auto; /* Vertically center the text there */
 	background-color: #f5f5f5;
-	padding:25px;
+	padding-top:10px;
+	padding-bottom:10px;
 }

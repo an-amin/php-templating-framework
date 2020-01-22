@@ -3,18 +3,19 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!-- Bootstrap CSS -->
+		<title><?=CONFIG['app-title'];?></title>
+		<link rel="shortcut icon" href="<?=url(CONFIG['app-favicon']);?>">
+
 		<link rel="stylesheet" href="<?=url('node_modules/bootstrap/dist/css/bootstrap.min.css');?>">
 		<link rel="stylesheet" href="<?=url('node_modules/font-awesome/css/font-awesome.css');?>">
-		<?=page_specific_css();?>
+		<link rel="stylesheet" href="<?=url('node_modules/select2/dist/css/select2.min.css');?>">
+		<link rel="stylesheet" href="<?=url('node_modules/sweetalert2/dist/sweetalert2.min.css');?>">
 		<link rel="stylesheet" href="<?=url('template/default/assets/css/style.css');?>">
+		<?=page_specific_css();?>
 
-		<title><?=CONFIG['app-title'];?></title>
-		<link rel="shortcut icon" href="<?=url('template/default/assets/img/favicon.ico');?>">
 	</head>
 
 	<body>
@@ -66,12 +67,21 @@
 		</section>
 
 		<footer class="footer">
-			<div class="container text-center text-muted">
-				<p>
-					<a href="javascript:void(0);" class="text-muted">About</a> | 
-					<a href="javascript:void(0);" class="text-muted">Terms & Condition</a>
-				</p>
-			  	<span class="">&copy; <?=date('Y');?>, Aminul Islam</span>
+			<div class="container-fluid text-muted">
+				<div class="row">
+					<div class="col-md-6 text-left">
+						<p class="">
+							<a href="javascript:void(0);" class="text-muted">About</a> | 
+							<a href="javascript:void(0);" class="text-muted">Terms & Condition</a>
+						</p>
+					</div>
+
+					<div class="col-md-6 text-right">
+						<span class="">&copy; <?=date('Y');?>, Aminul Islam</span>
+					</div>
+
+				</div>
+			  	
 			</div>
 		</footer>
 
@@ -80,7 +90,9 @@
 		<script src="<?=url('node_modules/jquery/dist/jquery.min.js');?>"></script>
 		<script src="<?=url('node_modules/popper.js/dist/popper.min.js');?>"></script>
 		<script src="<?=url('node_modules/bootstrap/dist/js/bootstrap.min.js');?>"></script>
-		<?=page_specific_js();?>
+		<script src="<?=url('node_modules/select2/dist/js/select2.full.min.js');?>"></script>
+		<script src="<?=url('node_modules/sweetalert2/dist/sweetalert2.all.min.js');?>"></script>
 		<script src="<?=url('template/default/assets/js/app.js');?>"></script>
+		<?=page_specific_js();?>
 	</body>
 </html>
