@@ -1,0 +1,16 @@
+{
+	"name": "php-templating-framework",
+	"description": "A Simple Templating Framework written in PHP",
+	"version": "1.0.0",
+	"dependencies": {
+		"jqGrid": "",
+		"datatable": "",
+		"sweetalert2": "",
+		"select2": "",
+		"font-awesome": "",
+		"bootstrap": "",
+		"popper.js": "",
+		"jquery-ui": "",
+		"jquery": ""
+	}
+}
