@@ -1,7 +1,7 @@
 <?php 
 defined('BASE_PATH') OR die('Direct scripts is not allowed!');
 
-$config['app-title'] 		= 'View Framework';
+$config['app-title'] 		= 'PHP Templating Framework';
 $config['app-description'] 	= 'BARCODETECH-AUTOMATION';
 $config['app-favicon'] 		= 'assets/images/favicon.ico';
 $config['logo']				= 'assets/images/logo-light.png';
