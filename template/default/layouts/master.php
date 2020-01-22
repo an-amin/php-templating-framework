@@ -10,6 +10,7 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="<?=url('node_modules/bootstrap/dist/css/bootstrap.min.css');?>">
 		<link rel="stylesheet" href="<?=url('node_modules/font-awesome/css/font-awesome.css');?>">
+		<?=page_specific_css();?>
 		<link rel="stylesheet" href="<?=url('template/default/assets/css/style.css');?>">
 
 		<title><?=CONFIG['app-title'];?></title>
@@ -60,6 +61,10 @@
 			</div>
 		</nav>
 
+		<section id="main">
+			<?=load_view();?>
+		</section>
+
 		<footer class="footer">
 			<div class="container text-center text-muted">
 				<p>
@@ -75,6 +80,7 @@
 		<script src="<?=url('node_modules/jquery/dist/jquery.min.js');?>"></script>
 		<script src="<?=url('node_modules/popper.js/dist/popper.min.js');?>"></script>
 		<script src="<?=url('node_modules/bootstrap/dist/js/bootstrap.min.js');?>"></script>
+		<?=page_specific_js();?>
 		<script src="<?=url('template/default/assets/js/app.js');?>"></script>
 	</body>
 </html>
