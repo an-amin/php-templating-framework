@@ -11,7 +11,8 @@ function url($slags='')
 
 function css($uri)
 {
-	$html = '<link href="'.url($uri).'" rel="stylesheet" type="text/css">';
+	$link = $uri . (CONFIG['script_auto_refreshing'] ? '?cache_id='.uniqid() : '');
+	$html = '<link href="'.url($link).'" rel="stylesheet" type="text/css">';
 	if(!file_exists($uri))
 		$html = "<!-- file not exists! \n\t {$html} \n\t : to have expected styles get the file... -->";
 	return $html;
@@ -19,7 +20,8 @@ function css($uri)
 
 function js($uri)
 {
-	$html = '<script src="'.url($uri).'" type="text/javascript"></script>';
+	$link = $uri . (CONFIG['script_auto_refreshing'] ? '?cache_id='.uniqid() : '');
+	$html = '<script src="'.url($link).'" type="text/javascript"></script>';
 	if(!file_exists($uri))
 		$html = "<!-- file not exists! \n\t {$html} \n\t : to have expected scripts get the file. -->";
 	return $html;
@@ -27,14 +29,14 @@ function js($uri)
 
 function page_specific_css()
 {
-	$uri =  'template/'. CONFIG['template'] . trim(CONFIG['custom_css_dir'],'/') . '/' . (empty(REQUEST_URI) ? 'index' : str_replace('/', '_', REQUEST_URI) . (CONFIG['minified_scripts'] ? '.min' : '')) . '.css';
+	$uri =  'template/'. CONFIG['template'] .'/'. trim(CONFIG['custom_css_dir'],'/') . '/' . (empty(REQUEST_URI) ? 'index' : str_replace('/', '_', REQUEST_URI) . (CONFIG['minified_scripts'] ? '.min' : '')) . '.css';
 	return css($uri);
 }
 
 function page_specific_js()
 {
-	$uri = 'template/'. CONFIG['template'] . trim(CONFIG['custom_js_dir'],'/') . '/' . ( empty(REQUEST_URI) ? 'index' : str_replace('/', '_', REQUEST_URI) . (CONFIG['minified_scripts'] ? '.min' : '')) . '.js';
-	return js(REQUEST_URI);
+	$uri = 'template/'. CONFIG['template'] .'/'. trim(CONFIG['custom_js_dir'],'/') . '/' . ( empty(REQUEST_URI) ? 'index' : str_replace('/', '_', REQUEST_URI) . (CONFIG['minified_scripts'] ? '.min' : '')) . '.js';
+	return js($uri);
 }
 
 function include_script($uri)
