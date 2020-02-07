@@ -49,6 +49,12 @@ function include_script($uri)
 	}
 }
 
+function include_layout_partial($uri)
+{
+	$uri =  'template/'. CONFIG['template'] .'/layouts/'. trim($uri, '/') . '.php';
+	include_script($uri);
+}
+
 function load_view()
 {
 	$view_file = !empty(REQUEST_URI) ? REQUEST_URI : 'index';
