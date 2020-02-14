@@ -12,18 +12,18 @@ function url($slags='')
 function css($uri)
 {
 	$link = $uri . (CONFIG['script_auto_refreshing'] ? '?cache_id='.uniqid() : '');
-	$html = '<link href="'.url($link).'" rel="stylesheet" type="text/css">';
+	$html = "\n".'<link href="'.url($link).'" rel="stylesheet" type="text/css">'."\n";
 	if(!file_exists($uri))
-		$html = "<!-- file not exists! \n\t {$html} \n\t : to have expected styles get the file... -->";
+		$html = "\n"."<!-- file not exists! \n\t {$html} \n\t : to have expected styles get the file... -->"."\n";
 	return $html;
 }
 
 function js($uri)
 {
 	$link = $uri . (CONFIG['script_auto_refreshing'] ? '?cache_id='.uniqid() : '');
-	$html = '<script src="'.url($link).'" type="text/javascript"></script>';
+	$html = "\n".'<script src="'.url($link).'" type="text/javascript"></script>'."\n";
 	if(!file_exists($uri))
-		$html = "<!-- file not exists! \n\t {$html} \n\t : to have expected scripts get the file. -->";
+		$html = "\n"."<!-- file not exists! \n\t {$html} \n\t : to have expected scripts get the file. -->"."\n";
 	return $html;
 }
 
@@ -42,10 +42,10 @@ function page_specific_js()
 function include_script($uri)
 {
 	if(file_exists($uri)){
-		echo "<!-- included : {$uri} -->";
+		echo "\n"."<!-- script included : {$uri} -->"."\n";
 		require_once $uri;
 	}else{
-		echo "<!-- failed to include : {$uri} -->";
+		echo "\n"."<!-- failed to include script : {$uri} -->"."\n";
 	}
 }
 
@@ -60,7 +60,10 @@ function load_view()
 	$view_file = !empty(REQUEST_URI) ? REQUEST_URI : 'index';
 	$view_file = './template/'.CONFIG['template'].'/pages/'.$view_file.'.php';
 	if(!file_exists($view_file))
+	{
+		echo "<!-- failed to load view : {$view_file} -->\n";
 		$view_file = './template/'.CONFIG['template'].'/pages/404.php';
+	}
 	// require_once $view_file;
 	include_script($view_file);
 }
