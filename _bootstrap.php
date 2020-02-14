@@ -3,7 +3,8 @@ defined('BASE_PATH') OR die('Direct scripts is not allowed!');
 require_once '_config.php';
 require_once '_functions.php';
 
-switch (REQUEST_URI) {
+switch(REQUEST_URI) 
+{
 	// some route
 	case 'some-page-name':
 		$layout_name = 'master-layout';

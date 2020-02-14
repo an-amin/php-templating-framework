@@ -7,5 +7,6 @@ define('BASE_PATH', $base_url);
 define('DOCUMENT_SUB_ROOT', $document_sub_root);
 $request_uri = str_replace(DOCUMENT_SUB_ROOT, '', $_SERVER['REQUEST_URI']);
 $request_uri = str_replace('?'.$_SERVER['QUERY_STRING'], '', $request_uri);
+$request_uri = !empty($request_uri) ? $request_uri : 'index';
 define('REQUEST_URI', $request_uri);
 require_once './_bootstrap.php';

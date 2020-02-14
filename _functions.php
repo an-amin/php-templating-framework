@@ -9,6 +9,22 @@ function url($slags='')
 	return BASE_PATH .'/'. $slags;
 }
 
+function include_script($uri)
+{
+	if(file_exists($uri)){
+		echo "\n"."<!-- script included : {$uri} -->"."\n";
+		require_once $uri;
+	}else{
+		echo "\n"."<!-- failed to include script : {$uri} -->"."\n";
+	}
+}
+
+function include_layout_partial($uri)
+{
+	$uri =  'template/'. CONFIG['template'] .'/layouts/'. trim($uri, '/') . '.php';
+	include_script($uri);
+}
+
 function css($uri)
 {
 	$link = $uri . (CONFIG['script_auto_refreshing'] ? '?cache_id='.uniqid() : '');
@@ -29,30 +45,18 @@ function js($uri)
 
 function page_specific_css()
 {
-	$uri =  'template/'. CONFIG['template'] .'/'. trim(CONFIG['custom_css_dir'],'/') . '/' . (empty(REQUEST_URI) ? 'index' : str_replace('/', '_', REQUEST_URI) . (CONFIG['minified_scripts'] ? '.min' : '')) . '.css';
-	return css($uri);
+	$head_uri =  'template/'. CONFIG['template'] .'/pages/'. str_replace('/', '_', REQUEST_URI) . '.head.php';
+	$css_uri =  'template/'. CONFIG['template'] .'/'. trim(CONFIG['custom_css_dir'],'/') . '/' . str_replace('/', '_', REQUEST_URI) . (CONFIG['minified_scripts'] ? '.min' : '') . '.css';
+	include_script($head_uri);
+	echo css($css_uri);
 }
 
 function page_specific_js()
 {
-	$uri = 'template/'. CONFIG['template'] .'/'. trim(CONFIG['custom_js_dir'],'/') . '/' . ( empty(REQUEST_URI) ? 'index' : str_replace('/', '_', REQUEST_URI) . (CONFIG['minified_scripts'] ? '.min' : '')) . '.js';
-	return js($uri);
-}
-
-function include_script($uri)
-{
-	if(file_exists($uri)){
-		echo "\n"."<!-- script included : {$uri} -->"."\n";
-		require_once $uri;
-	}else{
-		echo "\n"."<!-- failed to include script : {$uri} -->"."\n";
-	}
-}
-
-function include_layout_partial($uri)
-{
-	$uri =  'template/'. CONFIG['template'] .'/layouts/'. trim($uri, '/') . '.php';
-	include_script($uri);
+	$tail_uri =  'template/'. CONFIG['template'] .'/pages/'. str_replace('/', '_', REQUEST_URI) . '.tail.php';
+	$js_uri = 'template/'. CONFIG['template'] .'/'. trim(CONFIG['custom_js_dir'],'/') . '/' . str_replace('/', '_', REQUEST_URI) . (CONFIG['minified_scripts'] ? '.min' : '') . '.js';
+	include_script($tail_uri);
+	echo js($js_uri);
 }
 
 function load_view()
